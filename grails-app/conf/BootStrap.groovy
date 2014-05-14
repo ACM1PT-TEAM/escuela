@@ -49,12 +49,13 @@ class BootStrap {
 
 		def c1 = new Curso(
 				nivelCurso:"Basico 1",
-				aceptado:true,
 				dias:"Lunes-Viernes",
 				horario:"15-17 pm",
 				activo:true,
 				profesor:p1
 				)
+
+		c1.save()
 
 		def lista = Usuario.list()
 

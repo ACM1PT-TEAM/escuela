@@ -8,6 +8,10 @@ class Alumno extends Usuario {
 		peticiones display:false, nullable:true, blank:true
     }
 
+	def beforeInsert() {
+      tipoUsuario = "alumno"
+	}
+
 	String toString(){
 		super.toString()
 	}

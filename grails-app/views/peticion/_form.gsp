@@ -31,6 +31,6 @@
 		<g:message code="peticion.profesor.label" default="Profesor" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="profesor" name="profesor.id" from="${escuela.Profesor.list()}" optionKey="id" required="" value="${peticionInstance?.profesor?.id}" class="many-to-one"/>
+	<g:select id="profesor" name="profesor.id" from="${escuela.Profesor.get(session.profesor.id)}" optionKey="id" required="" value="${peticionInstance?.profesor?.id}" class="many-to-one"/>
 </div>
 

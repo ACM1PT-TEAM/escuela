@@ -32,8 +32,6 @@
 					
 						<g:sortableColumn property="activo" title="${message(code: 'curso.activo.label', default: 'Activo')}" />
 					
-						<g:sortableColumn property="aceptado" title="${message(code: 'curso.aceptado.label', default: 'Aceptado')}" />
-					
 						<th><g:message code="curso.profesor.label" default="Profesor" /></th>
 					
 					</tr>
@@ -49,8 +47,6 @@
 						<td>${fieldValue(bean: cursoInstance, field: "horario")}</td>
 					
 						<td><g:formatBoolean boolean="${cursoInstance.activo}" /></td>
-					
-						<td><g:formatBoolean boolean="${cursoInstance.aceptado}" /></td>
 					
 						<td>${fieldValue(bean: cursoInstance, field: "profesor")}</td>
 					

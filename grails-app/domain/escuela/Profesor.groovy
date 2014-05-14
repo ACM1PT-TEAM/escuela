@@ -15,6 +15,10 @@ class Profesor extends Usuario {
 		peticiones display:false,nullable:true, blank:true
     }
 
+	def beforeInsert() {
+      tipoUsuario = "profesor"
+	}
+
 	String toString(){
 		super.toString()
 	}

@@ -59,15 +59,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${cursoInstance?.aceptado}">
-				<li class="fieldcontain">
-					<span id="aceptado-label" class="property-label"><g:message code="curso.aceptado.label" default="Aceptado" /></span>
-					
-						<span class="property-value" aria-labelledby="aceptado-label"><g:formatBoolean boolean="${cursoInstance?.aceptado}" /></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${cursoInstance?.peticiones}">
 				<li class="fieldcontain">
 					<span id="peticiones-label" class="property-label"><g:message code="curso.peticiones.label" default="Peticiones" /></span>

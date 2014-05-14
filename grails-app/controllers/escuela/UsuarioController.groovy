@@ -19,6 +19,37 @@ class UsuarioController {
         respond usuarioInstance
     }
 
+	def login = {}
+	def logout = {
+		flash.message = "Vuelve Pronto ${session.user.nombre}"
+		session.user = null
+		session.alumno = null
+		session.profesor = null
+		redirect(action:"login")
+	}
+
+	def authenticate = {
+		def user = Usuario.findByCorreoElectronicoAndPassword(params.login,params.password)
+		session.user = user
+		if(user){
+			if(user.tipoUsuario=="alumno"){
+				def alumno = Alumno.findByCorreoElectronicoAndPassword(params.login,params.password)
+				session.alumno = alumno
+				flash.message = "Hola ${user.nombre}!"
+				redirect(controller:"alumno", action:"index")
+			}
+			if(user.tipoUsuario=="profesor"){
+				def profesor = Profesor.findByCorreoElectronicoAndPassword(params.login,params.password)
+				session.profesor = profesor
+				flash.message = "Hola Profesor ${user.nombre}!"
+				redirect(controller:"profesor", action:"index")
+			}
+		}else{
+			flash.message =	"El login o el password introducido no fue encontrado en el sistema."
+			redirect(action:"login")
+		}
+	}
+
     def create() {
         respond new Usuario(params)
     }

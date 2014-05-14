@@ -15,6 +15,21 @@ class PeticionController {
         respond Peticion.list(params), model:[peticionInstanceCount: Peticion.count()]
     }
 
+	def aceptarPeticion(Peticion peticionInstance){
+				def c1 = new Curso(
+						nivelCurso:peticionInstance.nivelCurso,
+						dias:peticionInstance.dias,
+						horario:peticionInstance.horarios,
+						activo:true,
+						profesor:peticionInstance.profesor
+				)
+
+			c1.save()
+			flash.message =	"Curso agregado al sistema."
+			delete(peticionInstance)
+			redirect(action:"index")
+	}
+
     def show(Peticion peticionInstance) {
         respond peticionInstance
     }

@@ -20,6 +20,12 @@ class Usuario {
 		tipoUsuario inList:["admin","alumno","profesor"], display:false, blank:true, nullable:true
     }
 
+	static transients = ['admin']
+
+	boolean isAdmin(){
+		return tipoUsuario == "admin"
+	}
+
 	String toString(){
 		"${nombre} ${apellidoPaterno} ${apellidoMaterno}"
 	}
