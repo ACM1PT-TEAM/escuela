@@ -55,7 +55,8 @@ class PeticionController {
         request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'peticionInstance.label', default: 'Peticion'), peticionInstance.id])
-                redirect peticionInstance
+//                redirect peticionInstance
+				redirect(controller:"profesor", action:"index")
             }
             '*' { respond peticionInstance, [status: CREATED] }
         }

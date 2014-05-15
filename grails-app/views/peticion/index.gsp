@@ -31,6 +31,10 @@
 						<g:sortableColumn property="horarios" title="${message(code: 'peticion.horarios.label', default: 'Horarios')}" />
 					
 						<th><g:message code="peticion.profesor.label" default="Profesor" /></th>
+
+						<th>Aceptar Curso</th>
+
+						<th>Rechazar Curso</th>
 					
 					</tr>
 				</thead>
@@ -45,6 +49,9 @@
 						<td>${fieldValue(bean: peticionInstance, field: "horarios")}</td>
 					
 						<td>${fieldValue(bean: peticionInstance, field: "profesor")}</td>						
+
+						<td><g:link action="aceptarPeticion" id="${peticionInstance.id}">Aceptar</g:link></td>
+						<td><g:link action="delete" id="${peticionInstance.id}">Rechazar</g:link></td>
 					
 					</tr>
 				</g:each>

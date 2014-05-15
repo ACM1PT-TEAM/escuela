@@ -7,7 +7,7 @@
 		<g:message code="peticionAlumno.alumno.label" default="Alumno" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="alumno" name="alumno.id" from="${escuela.Alumno.list()}" optionKey="id" required="" value="${peticionAlumnoInstance?.alumno?.id}" class="many-to-one"/>
+	<g:select id="alumno" name="alumno.id" from="${escuela.Alumno.get(session.alumno.id)}" optionKey="id" required="" value="${peticionAlumnoInstance?.alumno?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: peticionAlumnoInstance, field: 'curso', 'error')} required">

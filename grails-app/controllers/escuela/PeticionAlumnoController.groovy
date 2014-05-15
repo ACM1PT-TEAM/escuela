@@ -15,6 +15,25 @@ class PeticionAlumnoController {
         respond PeticionAlumno.list(params), model:[peticionAlumnoInstanceCount: PeticionAlumno.count()]
     }
 
+	def indice() {
+		def lista = PeticionAlumno.findByEstado("Pendiente")
+		[lista:lista]
+    }
+
+	def aceptarPeticion(PeticionAlumno peticionAlumnoInstance){
+		peticionAlumnoInstance.estado = "Aceptado"
+		peticionAlumnoInstance.save(flush:true)
+		flash.message =	"Alumno agregado al curso."
+		redirect(action:"indice")
+	}
+
+	def rechazarPeticion(PeticionAlumno peticionAlumnoInstance){
+		peticionAlumnoInstance.estado = "Rechazado"
+		peticionAlumnoInstance.save(flush:true)
+		flash.message =	"Se rechazo al alumno."
+		redirect(action:"indice")
+	}
+
     def show(PeticionAlumno peticionAlumnoInstance) {
         respond peticionAlumnoInstance
     }
@@ -40,7 +59,8 @@ class PeticionAlumnoController {
         request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'peticionAlumnoInstance.label', default: 'PeticionAlumno'), peticionAlumnoInstance.id])
-                redirect peticionAlumnoInstance
+//                redirect peticionAlumnoInstance
+				redirect(controller:"alumno", action:"index")
             }
             '*' { respond peticionAlumnoInstance, [status: CREATED] }
         }
