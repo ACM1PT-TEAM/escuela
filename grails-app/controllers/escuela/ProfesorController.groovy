@@ -23,6 +23,24 @@ class ProfesorController {
         respond new Profesor(params)
     }
 
+	def cursosProfesor(){
+		def lista = Profesor.get(session.profesor.id).cursos
+		[lista:lista]
+	}
+
+	def calificarCurso(){
+		def curso = Curso.get(params.idCurso)
+		def peticiones = PeticionAlumno.findAllByCursoAndEstado(curso,"Aceptado")
+		[peticiones:peticiones]
+	}
+
+	def guardarCalificacion(){
+		def peticion = PeticionAlumno.get(params.peticionid)
+		peticion.calificacion = params.int('calificacion')	
+		peticion.save(flush:true)
+		redirect(uri: "/profesor/calificarCurso?idCurso=${peticion.curso.id}")	
+	}
+
     @Transactional
     def save(Profesor profesorInstance) {
         if (profesorInstance == null) {

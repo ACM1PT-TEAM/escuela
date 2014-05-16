@@ -16,7 +16,7 @@ class PeticionAlumnoController {
     }
 
 	def indice() {
-		def lista = PeticionAlumno.findByEstado("Pendiente")
+		def lista = PeticionAlumno.findAllByEstado("Pendiente")
 		[lista:lista]
     }
 

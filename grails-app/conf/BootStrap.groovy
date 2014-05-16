@@ -2,6 +2,7 @@ import escuela.Profesor
 import escuela.Usuario
 import escuela.Alumno
 import escuela.Curso
+import escuela.PeticionAlumno
 
 class BootStrap {
 
@@ -56,6 +57,27 @@ class BootStrap {
 				)
 
 		c1.save()
+
+		def c2 = new Curso(
+				nivelCurso:"Basico 1",
+				dias:"Lunes-Viernes",
+				horario:"15-17 pm",
+				activo:false,
+				profesor:p2
+				)
+
+		c1.save()
+
+		for(i in 1..10){
+			def x = new Alumno(correoElectronico:"c${i}@a.com",	password:"acm1pt",nombre:"alumno ${i}",apellidoPaterno:"acm",	apellidoMaterno:"1pt",
+				telefono:"ascscsd")
+			x.save() 
+
+			def peticion = new PeticionAlumno(estado:"Aceptado", curso:c1, alumno:x)
+
+			peticion.save()
+
+		}
 
 		def lista = Usuario.list()
 

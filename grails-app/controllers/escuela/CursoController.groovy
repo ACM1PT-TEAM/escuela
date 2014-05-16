@@ -14,6 +14,11 @@ class CursoController {
         params.max = Math.min(max ?: 10, 100)
         respond Curso.list(params), model:[cursoInstanceCount: Curso.count()]
     }
+	
+	def indice(){
+		def lista = Curso.findAllByActivo("True")
+		[lista:lista]
+	}
 
     def show(Curso cursoInstance) {
         respond cursoInstance
